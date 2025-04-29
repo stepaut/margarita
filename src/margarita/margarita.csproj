@@ -19,7 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BetterUI.Styles\BetterUI.Styles.csproj" />
-    <ProjectReference Include="..\UIInfrastructure\BetterUI.Infrastructure.csproj" />
+    <ProjectReference Include="..\margarita.Controls\margarita.Controls.csproj" />
+    <ProjectReference Include="..\margarita.RecipeBook\margarita.RecipeBook.csproj" />
+    <ProjectReference Include="..\margarita.MyBar\margarita.MyBar.csproj" />
   </ItemGroup>
 </Project>

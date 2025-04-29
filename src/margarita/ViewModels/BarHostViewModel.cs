@@ -2,7 +2,10 @@
 using ReactiveUI;
 using System;
 using System.Windows.Input;
-using UIInfrastructure;
+using BetterUI.Infrastructure;
+using margarita.RecipeBook.ViewModels;
+using margarita.MyBar.ViewModels;
+using System.Threading.Tasks;
 
 namespace margarita.ViewModels;
 
@@ -16,23 +19,38 @@ public sealed class BarHostViewModel : ActiveWindowViewModelWithMenuBase, IMenuC
     public BarHostViewModel(IServiceProvider services) : base(services)
     {
         _replacer = services.GetRequiredService<IReplacerSubMainViewModel>();
-        ShowRecipeBookCommand = ReactiveCommand.Create(ShowRecipeBook);
+        ShowRecipeBookCommand = ReactiveCommand.CreateFromTask(ShowRecipeBook);
         ShowMyBarCommand = ReactiveCommand.Create(ShowMyBar);
     }
 
     public void Init()
     {
-        ShowRecipeBook();
+        ShowRecipeBookCommand.Execute(null);
     }
 
-    private void ShowRecipeBook()
+    private async Task ShowRecipeBook()
     {
-        _replacer.Replace<RecipeBookViewModel>();
+        try
+        {
+            var vm = _replacer.Replace<RecipeBookViewModel>();
+            await vm.Init();
+        }
+        catch (Exception ex)
+        {
+            //TODO log
+        }
     }
 
     private void ShowMyBar()
     {
-        _replacer.Replace<MyBarViewModel>();
+        try
+        {
+            _replacer.Replace<MyBarViewModel>();
+        }
+        catch (Exception ex)
+        {
+            //TODO log
+        }
     }
 
     protected override void Close()

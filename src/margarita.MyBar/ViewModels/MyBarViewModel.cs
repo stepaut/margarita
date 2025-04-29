@@ -1,6 +1,6 @@
-﻿using UIInfrastructure;
+﻿using BetterUI.Infrastructure;
 
-namespace margarita.ViewModels;
+namespace margarita.MyBar.ViewModels;
 
 public class MyBarViewModel : SubWindowViewModelBase, IMenuCompatible
 {

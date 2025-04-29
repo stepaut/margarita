@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace UIInfrastructure;
+namespace BetterUI.Infrastructure;
 
 public interface IReplacerMainViewModel
 {

@@ -1,0 +1,6 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\margarita.Controls\margarita.Controls.csproj" />
+    <ProjectReference Include="..\margarita.Service\margarita.Service.csproj" />
+  </ItemGroup>
+</Project>

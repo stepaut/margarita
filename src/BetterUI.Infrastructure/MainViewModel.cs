@@ -2,8 +2,9 @@
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using System;
+using System.Threading.Tasks;
 
-namespace UIInfrastructure;
+namespace BetterUI.Infrastructure;
 
 public abstract class MainViewModelBase : ReactiveObject
 {

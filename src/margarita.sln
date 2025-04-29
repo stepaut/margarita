@@ -17,6 +17,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterUI.Infrastructure", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterUI.Styles", "BetterUI.Styles\BetterUI.Styles.csproj", "{26DDA910-6F17-4732-99B6-4F4E4DAF3A71}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "margarita.Data", "margarita.Data\margarita.Data.csproj", "{BE2463AB-F51D-4ADC-A834-E015F6BAC68F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "margarita.RecipeBook", "margarita.RecipeBook\margarita.RecipeBook.csproj", "{41FDD117-719A-4E2F-927B-B6CD3615EEFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "margarita.MyBar", "margarita.MyBar\margarita.MyBar.csproj", "{ECDAA889-E34C-444A-99F1-23DD2485780A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "margarita.Controls", "margarita.Controls\margarita.Controls.csproj", "{B9E9F8E5-94C2-416E-9A1E-E1892DD2863D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "margarita.Service", "margarita.Service\margarita.Service.csproj", "{C75F7AEA-CCC6-4D3A-B5D7-79F5410DE43F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +49,26 @@ Global
 		{26DDA910-6F17-4732-99B6-4F4E4DAF3A71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26DDA910-6F17-4732-99B6-4F4E4DAF3A71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26DDA910-6F17-4732-99B6-4F4E4DAF3A71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE2463AB-F51D-4ADC-A834-E015F6BAC68F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE2463AB-F51D-4ADC-A834-E015F6BAC68F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE2463AB-F51D-4ADC-A834-E015F6BAC68F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE2463AB-F51D-4ADC-A834-E015F6BAC68F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41FDD117-719A-4E2F-927B-B6CD3615EEFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41FDD117-719A-4E2F-927B-B6CD3615EEFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41FDD117-719A-4E2F-927B-B6CD3615EEFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41FDD117-719A-4E2F-927B-B6CD3615EEFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECDAA889-E34C-444A-99F1-23DD2485780A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECDAA889-E34C-444A-99F1-23DD2485780A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECDAA889-E34C-444A-99F1-23DD2485780A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECDAA889-E34C-444A-99F1-23DD2485780A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9E9F8E5-94C2-416E-9A1E-E1892DD2863D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9E9F8E5-94C2-416E-9A1E-E1892DD2863D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9E9F8E5-94C2-416E-9A1E-E1892DD2863D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9E9F8E5-94C2-416E-9A1E-E1892DD2863D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C75F7AEA-CCC6-4D3A-B5D7-79F5410DE43F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C75F7AEA-CCC6-4D3A-B5D7-79F5410DE43F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C75F7AEA-CCC6-4D3A-B5D7-79F5410DE43F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C75F7AEA-CCC6-4D3A-B5D7-79F5410DE43F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

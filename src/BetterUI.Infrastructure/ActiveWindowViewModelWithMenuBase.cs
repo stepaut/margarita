@@ -4,7 +4,7 @@ using ReactiveUI.Fody.Helpers;
 using System;
 using System.Windows.Input;
 
-namespace UIInfrastructure;
+namespace BetterUI.Infrastructure;
 
 public abstract class ActiveWindowViewModelWithMenuBase : ActiveWindowViewModelBase, ISubMainViewModel
 {

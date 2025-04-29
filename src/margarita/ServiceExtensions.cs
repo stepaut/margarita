@@ -1,6 +1,10 @@
-﻿using margarita.ViewModels;
+﻿using BetterUI.Infrastructure;
+using margarita.Data;
+using margarita.MyBar;
+using margarita.RecipeBook;
+using margarita.Service;
+using margarita.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
-using UIInfrastructure;
 
 namespace margarita;
 
@@ -14,7 +18,9 @@ public static class ServiceExtensions
         services.AddTransient<IReplacerSubMainViewModel, BarHostReplacerSubMainViewModel>();
         services.AddSingleton<BarHostViewModel>();
 
-        services.AddTransient<RecipeBookViewModel>();
-        services.AddTransient<MyBarViewModel>();
+        services.AddServiceServices();
+        services.AddDataServices();
+        services.AddRecipeBookServices();
+        services.AddMyBarServices();
     }
 }

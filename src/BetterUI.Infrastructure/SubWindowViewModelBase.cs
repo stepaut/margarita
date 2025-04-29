@@ -1,7 +1,7 @@
 ﻿using ReactiveUI;
 using System;
 
-namespace UIInfrastructure;
+namespace BetterUI.Infrastructure;
 
 /// <summary>
 /// VM, способные заменять активный контрол основного окна с меню

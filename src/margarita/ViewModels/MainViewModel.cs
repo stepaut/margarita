@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
-using UIInfrastructure;
+using BetterUI.Infrastructure;
 
 namespace margarita.ViewModels;
 

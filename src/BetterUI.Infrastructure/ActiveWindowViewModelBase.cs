@@ -1,6 +1,6 @@
 ﻿using ReactiveUI;
 
-namespace UIInfrastructure;
+namespace BetterUI.Infrastructure;
 
 /// <summary>
 /// VM, способные заменять основное окно
