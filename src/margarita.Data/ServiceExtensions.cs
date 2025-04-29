@@ -1,4 +1,4 @@
-﻿using margarita.Data.Repositories;
+﻿using margarita.Data.Repositories.RecipeBook;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.IO;

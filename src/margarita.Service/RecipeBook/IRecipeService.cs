@@ -1,5 +1,5 @@
 ﻿using margarita.Data.Dto.RecipeBook;
-using margarita.Data.Repositories;
+using margarita.Data.Repositories.RecipeBook;
 
 namespace margarita.Service.RecipeBook;
 

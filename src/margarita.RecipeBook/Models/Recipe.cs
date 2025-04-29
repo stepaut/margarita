@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace margarita.RecipeBook.Models;
 
-internal class Recipe
+public class Recipe
 {
     public Guid Id { get; }
     public string Name { get; }

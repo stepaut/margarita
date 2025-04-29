@@ -1,0 +1,27 @@
+<UserControl
+  x:Class="margarita.RecipeBook.Views.RecipeListView"
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:m="clr-namespace:margarita.RecipeBook.Models"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:vm="clr-namespace:margarita.RecipeBook.ViewModels"
+  d:DesignHeight="450"
+  d:DesignWidth="800"
+  x:DataType="vm:RecipeListViewModel"
+  mc:Ignorable="d">
+
+  <Grid ColumnDefinitions="*,2*">
+    <ListBox Grid.Column="0" ItemsSource="{Binding Recipes}" SelectedItem="{Binding SelectedRecipeInfo}">
+      <ListBox.DataTemplates>
+        <DataTemplate DataType="m:RecipeInfo">
+          <StackPanel Orientation="Vertical">
+            <TextBlock x:Class="h2" Text="{Binding Name}" />
+            <TextBlock x:Class="h3" Text="{Binding OriginalName}" />
+          </StackPanel>
+        </DataTemplate>
+      </ListBox.DataTemplates>
+    </ListBox>
+  </Grid>
+
+</UserControl>

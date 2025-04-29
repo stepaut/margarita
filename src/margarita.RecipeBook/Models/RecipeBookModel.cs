@@ -1,5 +1,6 @@
 ﻿using Mapster;
 using margarita.Service.RecipeBook;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,5 +31,12 @@ public class RecipeBookModel
 
         _ingredients.Clear();
         _ingredients.AddRange((await _ingredientService.GetIngredientInfos()).Select(x => x.Adapt<IngredientInfo>()));
+    }
+
+    public async Task<Recipe> LoadRecipe(Guid id)
+    {
+        var dto = await _recipeService.GetRecipe(id);
+        var recipe = dto.Adapt<Recipe>();
+        return recipe;
     }
 }

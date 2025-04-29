@@ -1,0 +1,24 @@
+<UserControl
+    x:Class="margarita.RecipeBook.Views.RecipeBookView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:margarita.RecipeBook.ViewModels"
+    xmlns:view="clr-namespace:margarita.RecipeBook.Views"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:DataType="vm:RecipeBookViewModel"
+    mc:Ignorable="d">
+
+    <TabControl>
+        <TabItem Header="Recipe List" IsSelected="True">
+            <view:RecipeListView DataContext="{Binding RecipeList}" />
+        </TabItem>
+
+        <TabItem Header="Ingredient List">
+
+        </TabItem>
+    </TabControl>
+
+</UserControl>

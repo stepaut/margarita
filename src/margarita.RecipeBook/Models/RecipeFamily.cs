@@ -2,7 +2,7 @@
 
 namespace margarita.RecipeBook.Models;
 
-internal class RecipeFamily
+public class RecipeFamily
 {
     public Guid Id { get; }
     public string Name { get; }

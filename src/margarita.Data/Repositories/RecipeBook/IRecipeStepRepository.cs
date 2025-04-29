@@ -7,7 +7,7 @@ using Mapster;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
-namespace margarita.Data.Repositories;
+namespace margarita.Data.Repositories.RecipeBook;
 
 public interface IRecipeStepRepository
 {
