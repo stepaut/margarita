@@ -1,0 +1,92 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:margarita.ViewModels"
+             xmlns:icons="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="margarita.Views.BarHostView"
+             x:DataType="vm:BarHostViewModel">
+  <Design.DataContext>
+    <vm:BarHostViewModel />
+  </Design.DataContext>
+
+  <Grid>
+    <TransitioningContentControl Content="{Binding ActiveWindow}"
+                                 IsVisible="{Binding !ShowMenu}"/>
+
+    <SplitView IsPaneOpen="{Binding IsPaneOpen}"
+               IsVisible="{Binding ShowMenu}"
+               CompactPaneLength="40"
+               DisplayMode="CompactInline"
+               OpenPaneLength="200">
+      <SplitView.Pane>
+        <StackPanel Orientation="Vertical"
+                    Spacing="5"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Top">
+
+          <Grid ColumnDefinitions="auto, *">
+            <Button Grid.Column="0"
+                    HorizontalAlignment="Left"
+                    Width="40"
+                    Height="40"
+                    Background="Transparent"
+                    Command="{Binding TriggerPaneCommand}">
+              <Viewbox Width="28"
+                        Height="28">
+                <icons:SymbolIcon Symbol="LineHorizontal3" />
+              </Viewbox>
+            </Button>
+
+            <TextBlock Grid.Column="1"
+                       VerticalAlignment="Bottom"
+                       HorizontalAlignment="Right"
+                       Margin="0,0,4,0"
+                       Text="margarita"
+                       Classes="h1"/>
+          </Grid>
+
+          <Separator/>
+
+          <Button Classes="inMenu"
+                  Command="{Binding ShowRecipeBookCommand}">
+            <Grid ColumnDefinitions="40, *">
+              <Viewbox Grid.Column="0"
+                       Width="28"
+                       Height="28">
+                <icons:SymbolIcon Symbol="Book" />
+              </Viewbox>
+              <TextBlock Grid.Column="1"
+                         Margin="4,0,0,0"
+                         VerticalAlignment="Center"
+                         Text="Recipe Book"/>
+            </Grid>
+          </Button>
+
+          <Button Classes="inMenu"
+                  Command="{Binding ShowMyBarCommand}">
+            <Grid ColumnDefinitions="40, *">
+              <Viewbox Grid.Column="0"
+                       Width="28"
+                       Height="28">
+                <icons:SymbolIcon Symbol="DrinkMargarita" />
+              </Viewbox>
+              <TextBlock Grid.Column="1"
+                         Margin="4,0,0,0"
+                         VerticalAlignment="Center"
+                         Text="My Bar"/>
+            </Grid>
+          </Button>
+
+        </StackPanel>
+      </SplitView.Pane>
+
+      <SplitView.Content>
+        <Border CornerRadius="12 0 0 0">
+          <TransitioningContentControl Content="{Binding ActiveWindow}" />
+        </Border>
+      </SplitView.Content>
+    </SplitView>
+  </Grid>
+</UserControl>
