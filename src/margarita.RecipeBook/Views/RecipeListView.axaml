@@ -12,16 +12,79 @@
   mc:Ignorable="d">
 
   <Grid ColumnDefinitions="*,2*">
-    <ListBox Grid.Column="0" ItemsSource="{Binding Recipes}" SelectedItem="{Binding SelectedRecipeInfo}">
+    <ListBox
+      Grid.Column="0"
+      ItemsSource="{Binding Recipes}"
+      SelectedItem="{Binding SelectedRecipeInfo}">
       <ListBox.DataTemplates>
         <DataTemplate DataType="m:RecipeInfo">
           <StackPanel Orientation="Vertical">
-            <TextBlock x:Class="h2" Text="{Binding Name}" />
-            <TextBlock x:Class="h3" Text="{Binding OriginalName}" />
+            <TextBlock Classes="h2" Text="{Binding Name}" />
+            <TextBlock Classes="h3" Text="{Binding OriginalName}" />
           </StackPanel>
         </DataTemplate>
       </ListBox.DataTemplates>
     </ListBox>
+
+    <ScrollViewer Grid.Column="1">
+      <StackPanel
+        DataContext="{Binding SelectedRecipe}"
+        Orientation="Vertical"
+        Spacing="5">
+        <TextBlock Classes="h1" Text="{Binding Name}" />
+
+        <TextBlock Classes="h4" Text="{Binding OriginalName}" />
+
+        <HyperlinkButton Content="{Binding Family.Name}" />
+
+        <TextBlock Classes="h2" Text="{Binding Description}" />
+
+        <!--  steps  -->
+        <ListBox ItemsSource="{Binding Steps}">
+          <ListBox.DataTemplates>
+            <DataTemplate DataType="m:RecipeStep">
+              <StackPanel Orientation="Horizontal" Spacing="5">
+                <TextBlock Classes="h2" Text="{Binding Order}" />
+                <TextBlock Classes="h3" Text="{Binding Description}" />
+              </StackPanel>
+            </DataTemplate>
+          </ListBox.DataTemplates>
+        </ListBox>
+
+        <!--  components  -->
+        <ListBox ItemsSource="{Binding Components}">
+          <ListBox.DataTemplates>
+            <DataTemplate DataType="m:RecipeComponent">
+              <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                  <HyperlinkButton Click="OpenIngredint_Click" Content="{Binding MainIngredient.Name}" />
+                  <TextBlock
+                    Classes="h4"
+                    IsVisible="{Binding !IsRequired}"
+                    Text="(optional)" />
+                  <TextBlock Classes="h2">
+                    <Run Text="{Binding VolumeInMl}" />
+                    <Run Text="ml" />
+                  </TextBlock>
+                </StackPanel>
+                <Expander
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Top"
+                  Header="Alt. Ingredients">
+                  <ListBox ItemsSource="{Binding AltIngredients}">
+                    <ListBox.DataTemplates>
+                      <DataTemplate DataType="m:Ingredient">
+                        <HyperlinkButton Content="{Binding Name}" />
+                      </DataTemplate>
+                    </ListBox.DataTemplates>
+                  </ListBox>
+                </Expander>
+              </StackPanel>
+            </DataTemplate>
+          </ListBox.DataTemplates>
+        </ListBox>
+      </StackPanel>
+    </ScrollViewer>
   </Grid>
 
 </UserControl>

@@ -9,19 +9,16 @@ using System.Linq;
 
 namespace margarita.Data.Repositories.RecipeBook;
 
-public interface IRecipeStepRepository
+public interface IRecipeStepRepository : IRepository
 {
     Task CreateRecipeStep(RecipeStepDto recipeStep);
     Task<IReadOnlyCollection<RecipeStepDto>> GetRecipeSteps(Guid recipeId);
 }
 
-internal class RecipeStepRepository : IRecipeStepRepository
+internal class RecipeStepRepository : RepositoryBase, IRecipeStepRepository
 {
-    private readonly BarDbContext _context;
-
-    public RecipeStepRepository(BarDbContext context)
+    public RecipeStepRepository(BarDbContext context) : base(context)
     {
-        _context = context;
     }
 
     public async Task CreateRecipeStep(RecipeStepDto recipeStep)
@@ -32,7 +29,7 @@ internal class RecipeStepRepository : IRecipeStepRepository
 
     public async Task<IReadOnlyCollection<RecipeStepDto>> GetRecipeSteps(Guid recipeId)
     {
-        var entities = await _context.RecipeSteps.ToListAsync();
+        var entities = await _context.RecipeSteps.Where(x => x.Recipe.Id == recipeId).ToListAsync();
         return entities.Select(x => x.Adapt<RecipeStepDto>()).ToList();
     }
 }

@@ -33,6 +33,10 @@
     <Setter Property="FontSize" Value="18"/>
   </Style>
 
+  <Style Selector="TextBlock.h5">
+    <Setter Property="FontSize" Value="16"/>
+  </Style>
+
   <Style Selector="Button.inMenu">
     <Setter Property="Background" Value="Transparent"/>
     <Setter Property="Height" Value="40"/>

@@ -9,5 +9,6 @@ public static class ServiceExtensions
     {
         services.AddScoped<IRecipeService, RecipeService>();
         services.AddScoped<IIngredientService, IngredientService>();
+        services.AddScoped<IRecipeFamilyService, RecipeFamilyService>();
     }
 }

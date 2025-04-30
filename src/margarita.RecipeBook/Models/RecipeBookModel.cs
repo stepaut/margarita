@@ -1,4 +1,5 @@
-﻿using Mapster;
+﻿using DynamicData;
+using Mapster;
 using margarita.Service.RecipeBook;
 using System;
 using System.Collections.Generic;
@@ -9,34 +10,45 @@ namespace margarita.RecipeBook.Models;
 
 public class RecipeBookModel
 {
-    public IReadOnlyCollection<RecipeInfo> Recipes => _recipes;
-    private readonly List<RecipeInfo> _recipes = new();
+    public IReadOnlyCollection<RecipeFamily> RecipeFamilies => _recipeFamilies;
+    private readonly List<RecipeFamily> _recipeFamilies = new();
 
-    public IReadOnlyCollection<IngredientInfo> Ingredients => _ingredients;
-    private readonly List<IngredientInfo> _ingredients = new();
+    public IReadOnlyCollection<RecipeInfo> RecipeInfos => _recipeInfos;
+    private readonly List<RecipeInfo> _recipeInfos = new();
+
+    public IReadOnlyCollection<Ingredient> Ingredients => _ingredients;
+    private readonly List<Ingredient> _ingredients = new();
 
     private readonly IRecipeService _recipeService;
     private readonly IIngredientService _ingredientService;
+    private readonly IRecipeFamilyService _recipeFamilyService;
 
-    public RecipeBookModel(IRecipeService recipeService, IIngredientService ingredientService)
+    public RecipeBookModel(IRecipeService recipeService, IIngredientService ingredientService,IRecipeFamilyService recipeFamilyService)
     {
         _recipeService = recipeService;
         _ingredientService = ingredientService;
+        _recipeFamilyService = recipeFamilyService;
     }
 
     public async Task Load()
     {
-        _recipes.Clear();
-        _recipes.AddRange((await _recipeService.GetRecipeInfos()).Select(x => x.Adapt<RecipeInfo>()));
+        _recipeInfos.Clear();
+        _recipeInfos.AddRange((await _recipeService.GetRecipeInfos()).Select(x => x.Adapt<RecipeInfo>()));
 
         _ingredients.Clear();
-        _ingredients.AddRange((await _ingredientService.GetIngredientInfos()).Select(x => x.Adapt<IngredientInfo>()));
+        _ingredients.AddRange((await _ingredientService.GetIngredients()).Select(x => x.Adapt<Ingredient>()));
+
+        _recipeFamilies.Clear();
+        _recipeFamilies.AddRange((await _recipeFamilyService.GetRecipeFamilies()).Select(x => x.Adapt<RecipeFamily>()));
     }
 
-    public async Task<Recipe> LoadRecipe(Guid id)
+    public async Task<Recipe?> LoadRecipe(Guid id)
     {
-        var dto = await _recipeService.GetRecipe(id);
-        var recipe = dto.Adapt<Recipe>();
-        return recipe;
+        var recipeDto = await _recipeService.GetRecipe(id);
+        if (recipeDto is null) return null;
+
+        var family = _recipeFamilies.FirstOrDefault(x => x.Id == recipeDto.FamilyId);
+
+        return Recipe.Create(recipeDto, family, _ingredients);
     }
 }

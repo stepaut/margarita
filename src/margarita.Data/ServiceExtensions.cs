@@ -14,5 +14,8 @@ public static class ServiceExtensions
 
         services.AddScoped<IRecipeRepository, RecipeRepository>();
         services.AddScoped<IRecipeStepRepository, RecipeStepRepository>();
+        services.AddScoped<IRecipeComponentRepository, RecipeComponentRepository>();
+        services.AddScoped<IRecipeFamilyRepository, RecipeFamilyRepository>();
+        services.AddScoped<IIngredientRepository, IngredientRepository>();
     }
 }

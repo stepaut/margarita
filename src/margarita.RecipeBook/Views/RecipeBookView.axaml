@@ -11,12 +11,16 @@
     x:DataType="vm:RecipeBookViewModel"
     mc:Ignorable="d">
 
-    <TabControl>
-        <TabItem Header="Recipe List" IsSelected="True">
+    <TabControl SelectedIndex="{Binding SelectedTabIndex}">
+        <TabItem Header="Recipes">
             <view:RecipeListView DataContext="{Binding RecipeList}" />
         </TabItem>
 
-        <TabItem Header="Ingredient List">
+        <TabItem Header="Recipe Families">
+
+        </TabItem>
+
+        <TabItem Header="Ingredients">
 
         </TabItem>
     </TabControl>

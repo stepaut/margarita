@@ -5,11 +5,14 @@ using ReactiveUI.Fody.Helpers;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace margarita.RecipeBook.ViewModels;
 
 public class RecipeListViewModel : ReactiveObject
 {
+    public ICommand OpenRecipeFamiyCommand { get; }
+
     [Reactive]
     public Recipe? SelectedRecipe { get; set; }
 
@@ -31,7 +34,7 @@ public class RecipeListViewModel : ReactiveObject
     public void FillList()
     {
         Recipes.Clear();
-        Recipes.AddRange(_book.Recipes);
+        Recipes.AddRange(_book.RecipeInfos);
     }
 
     private async Task LoadRecipe(Guid? recipeId)
