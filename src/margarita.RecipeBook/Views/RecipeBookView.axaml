@@ -17,7 +17,7 @@
         </TabItem>
 
         <TabItem Header="Recipe Families">
-
+            <view:RecipeFamilyListView DataContext="{Binding RecipeFamilyList}" />
         </TabItem>
 
         <TabItem Header="Ingredients">

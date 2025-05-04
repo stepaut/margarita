@@ -1,5 +1,5 @@
 <UserControl
-  x:Class="margarita.RecipeBook.Views.IngredientsListView"
+  x:Class="margarita.RecipeBook.Views.RecipeFamilyListView"
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,16 +8,16 @@
   xmlns:vm="clr-namespace:margarita.RecipeBook.ViewModels"
   d:DesignHeight="450"
   d:DesignWidth="800"
-  x:DataType="vm:IngredientsListViewModel"
+  x:DataType="vm:RecipeFamilyListViewModel"
   mc:Ignorable="d">
 
   <Grid ColumnDefinitions="*,2*">
     <ListBox
       Grid.Column="0"
-      ItemsSource="{Binding Ingredients}"
-      SelectedItem="{Binding SelectedIngredient}">
+      ItemsSource="{Binding RecipeFamilies}"
+      SelectedItem="{Binding SelectedRecipeFamily}">
       <ListBox.DataTemplates>
-        <DataTemplate DataType="m:Ingredient">
+        <DataTemplate DataType="m:RecipeFamily">
           <StackPanel Orientation="Vertical">
             <TextBlock Classes="h2" Text="{Binding Name}" />
           </StackPanel>
@@ -27,7 +27,7 @@
 
     <ScrollViewer Grid.Column="1">
       <StackPanel
-        DataContext="{Binding SelectedIngredient}"
+        DataContext="{Binding SelectedRecipeFamily}"
         Orientation="Vertical"
         Spacing="5">
         <TextBlock Classes="h1" Text="{Binding Name}" />
@@ -35,9 +35,7 @@
         <HyperlinkButton Content="{Binding Parent.Name}" />
 
         <Separator />
-
-        <TextBlock Classes="h3" Text="{Binding Alc, StringFormat='ALC. {0} %'}"/>
-
+        
         <TextBlock Classes="h2" Text="{Binding Description}" />
 
       </StackPanel>

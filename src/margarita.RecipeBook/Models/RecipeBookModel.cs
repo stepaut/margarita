@@ -39,7 +39,7 @@ public class RecipeBookModel
         _ingredients.AddRange(Ingredient.Create(await _ingredientService.GetIngredients()));
 
         _recipeFamilies.Clear();
-        _recipeFamilies.AddRange((await _recipeFamilyService.GetRecipeFamilies()).Select(x => x.Adapt<RecipeFamily>()));
+        _recipeFamilies.AddRange(RecipeFamily.Create(await _recipeFamilyService.GetRecipeFamilies()));
     }
 
     public async Task<Recipe?> LoadRecipe(Guid id)

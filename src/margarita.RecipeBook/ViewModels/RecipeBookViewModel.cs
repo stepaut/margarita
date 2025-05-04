@@ -11,6 +11,7 @@ public class RecipeBookViewModel : SubWindowViewModelBase, IMenuCompatible
     public object SelectedTabIndex { get; set; }
 
     public RecipeListViewModel RecipeList { get; }
+    public RecipeFamilyListViewModel RecipeFamilyList { get; }
     public IngredientsListViewModel IngredientsList { get; }
 
     private readonly RecipeBookModel _book;
@@ -19,6 +20,7 @@ public class RecipeBookViewModel : SubWindowViewModelBase, IMenuCompatible
     {
         _book = book;
         RecipeList = new RecipeListViewModel(book);
+        RecipeFamilyList = new RecipeFamilyListViewModel(book);
         IngredientsList = new IngredientsListViewModel(book);
         SelectedTabIndex = 0;
     }
@@ -27,6 +29,7 @@ public class RecipeBookViewModel : SubWindowViewModelBase, IMenuCompatible
     {
         await _book.Load();
         RecipeList.FillList();
+        RecipeFamilyList.FillList();
         IngredientsList.FillList();
     }
 }
