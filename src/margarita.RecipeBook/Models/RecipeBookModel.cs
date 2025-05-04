@@ -36,7 +36,7 @@ public class RecipeBookModel
         _recipeInfos.AddRange((await _recipeService.GetRecipeInfos()).Select(x => x.Adapt<RecipeInfo>()));
 
         _ingredients.Clear();
-        _ingredients.AddRange((await _ingredientService.GetIngredients()).Select(x => x.Adapt<Ingredient>()));
+        _ingredients.AddRange(Ingredient.Create(await _ingredientService.GetIngredients()));
 
         _recipeFamilies.Clear();
         _recipeFamilies.AddRange((await _recipeFamilyService.GetRecipeFamilies()).Select(x => x.Adapt<RecipeFamily>()));

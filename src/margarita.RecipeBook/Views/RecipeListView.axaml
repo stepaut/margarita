@@ -37,7 +37,11 @@
 
         <HyperlinkButton Content="{Binding Family.Name}" />
 
+        <Separator />
+
         <TextBlock Classes="h2" Text="{Binding Description}" />
+
+        <Separator />
 
         <!--  steps  -->
         <ListBox ItemsSource="{Binding Steps}">
@@ -51,10 +55,13 @@
           </ListBox.DataTemplates>
         </ListBox>
 
+        <Separator />
+
         <!--  components  -->
         <ListBox ItemsSource="{Binding Components}">
           <ListBox.DataTemplates>
             <DataTemplate DataType="m:RecipeComponent">
+              <!--  main ingedient  -->
               <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal" Spacing="5">
                   <HyperlinkButton Click="OpenIngredint_Click" Content="{Binding MainIngredient.Name}" />
@@ -67,19 +74,27 @@
                     <Run Text="ml" />
                   </TextBlock>
                 </StackPanel>
-                <Expander
-                  HorizontalAlignment="Stretch"
-                  VerticalAlignment="Top"
-                  Header="Alt. Ingredients">
+                <!--  alt ingredients  -->
+                <StackPanel
+                  IsVisible="{Binding AltIngredients.Count}"
+                  Orientation="Horizontal"
+                  Spacing="5">
+                  <TextBlock VerticalAlignment="Center" Text="Alt.:" />
                   <ListBox ItemsSource="{Binding AltIngredients}">
+                    <ListBox.ItemsPanel>
+                      <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                      </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
                     <ListBox.DataTemplates>
                       <DataTemplate DataType="m:Ingredient">
                         <HyperlinkButton Content="{Binding Name}" />
                       </DataTemplate>
                     </ListBox.DataTemplates>
                   </ListBox>
-                </Expander>
+                </StackPanel>
               </StackPanel>
+
             </DataTemplate>
           </ListBox.DataTemplates>
         </ListBox>

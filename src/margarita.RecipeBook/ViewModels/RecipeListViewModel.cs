@@ -5,14 +5,11 @@ using ReactiveUI.Fody.Helpers;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace margarita.RecipeBook.ViewModels;
 
 public class RecipeListViewModel : ReactiveObject
 {
-    public ICommand OpenRecipeFamiyCommand { get; }
-
     [Reactive]
     public Recipe? SelectedRecipe { get; set; }
 

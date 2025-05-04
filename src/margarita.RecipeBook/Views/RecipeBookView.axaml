@@ -21,7 +21,7 @@
         </TabItem>
 
         <TabItem Header="Ingredients">
-
+            <view:IngredientsListView DataContext="{Binding IngredientsList}" />
         </TabItem>
     </TabControl>
 

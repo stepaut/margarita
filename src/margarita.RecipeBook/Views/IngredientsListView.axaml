@@ -1,0 +1,50 @@
+<UserControl
+  x:Class="margarita.RecipeBook.Views.IngredientsListView"
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:m="clr-namespace:margarita.RecipeBook.Models"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:vm="clr-namespace:margarita.RecipeBook.ViewModels"
+  d:DesignHeight="450"
+  d:DesignWidth="800"
+  x:DataType="vm:IngredientsListViewModel"
+  mc:Ignorable="d">
+
+  <Grid ColumnDefinitions="*,2*">
+    <ListBox
+      Grid.Column="0"
+      ItemsSource="{Binding Ingredients}"
+      SelectedItem="{Binding SelectedIngredient}">
+      <ListBox.DataTemplates>
+        <DataTemplate DataType="m:Ingredient">
+          <StackPanel Orientation="Vertical">
+            <TextBlock Classes="h2" Text="{Binding Name}" />
+          </StackPanel>
+        </DataTemplate>
+      </ListBox.DataTemplates>
+    </ListBox>
+
+    <ScrollViewer Grid.Column="1">
+      <StackPanel
+        DataContext="{Binding SelectedIngredient}"
+        Orientation="Vertical"
+        Spacing="5">
+        <TextBlock Classes="h1" Text="{Binding Name}" />
+
+        <HyperlinkButton Content="{Binding Parent.Name}" />
+
+        <Separator />
+
+        <TextBlock Classes="h3">
+          <Run Text="ALC. " />
+          <Run Text="{Binding Alc}" />
+        </TextBlock> 
+
+        <TextBlock Classes="h2" Text="{Binding Description}" />
+
+      </StackPanel>
+    </ScrollViewer>
+  </Grid>
+
+</UserControl>
