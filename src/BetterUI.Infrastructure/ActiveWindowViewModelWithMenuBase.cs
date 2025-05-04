@@ -24,7 +24,7 @@ public abstract class ActiveWindowViewModelWithMenuBase : ActiveWindowViewModelB
     public bool ShowMenu => ActiveWindow is IMenuCompatible;
 
     [Reactive]
-    public bool IsPaneOpen { get; set; }
+    public bool IsPaneOpen { get; set; } = true;
 
     public ICommand TriggerPaneCommand { get; }
 

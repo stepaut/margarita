@@ -5,7 +5,7 @@ namespace margarita.Service.RecipeBook;
 
 public interface IIngredientService
 {
-    Task CreateIngredient(IngredientDto ingredient);
+    Task CreateOrUpdateIngredient(IngredientDto ingredient);
     Task<IReadOnlyCollection<IngredientDto>> GetIngredients();
 }
 
@@ -19,7 +19,7 @@ internal class IngredientService : IIngredientService
         _ingredientRepository = ingredientRepository;
     }
 
-    public async Task CreateIngredient(IngredientDto ingredient)
+    public async Task CreateOrUpdateIngredient(IngredientDto ingredient)
     {
         await _ingredientRepository.CreateIngredient(ingredient);
         _ingredients.Create(ingredient.Id, ingredient);

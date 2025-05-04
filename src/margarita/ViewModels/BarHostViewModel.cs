@@ -6,34 +6,48 @@ using BetterUI.Infrastructure;
 using margarita.RecipeBook.ViewModels;
 using margarita.MyBar.ViewModels;
 using System.Threading.Tasks;
+using margarita.RecipeBook.Models;
 
 namespace margarita.ViewModels;
 
 public sealed class BarHostViewModel : ActiveWindowViewModelWithMenuBase, IMenuCompatible
 {
-    public ICommand ShowRecipeBookCommand { get; }
+    public ICommand ShowRecipeListCommand { get; }
+    public ICommand ShowIngredientsListCommand { get; }
+    public ICommand ShowRecipeFamilyListCommand { get; }
     public ICommand ShowMyBarCommand { get; }
 
     private readonly IReplacerSubMainViewModel _replacer;
+    private readonly RecipeBookModel _book;
 
     public BarHostViewModel(IServiceProvider services) : base(services)
     {
+        _book = services.GetRequiredService<RecipeBookModel>();
         _replacer = services.GetRequiredService<IReplacerSubMainViewModel>();
-        ShowRecipeBookCommand = ReactiveCommand.CreateFromTask(ShowRecipeBook);
-        ShowMyBarCommand = ReactiveCommand.Create(ShowMyBar);
+
+        ShowRecipeListCommand = ReactiveCommand.Create(() => Do(() => _replacer.Replace<RecipeListViewModel>(false)));
+        ShowIngredientsListCommand = ReactiveCommand.Create(() => Do(() => _replacer.Replace<IngredientsListViewModel>(false)));
+        ShowRecipeFamilyListCommand = ReactiveCommand.Create(() => Do(() => _replacer.Replace<RecipeFamilyListViewModel>(false)));
+        ShowMyBarCommand = ReactiveCommand.Create(() => Do(() => _replacer.Replace<MyBarViewModel>(false)));
     }
 
     public void Init()
     {
-        ShowRecipeBookCommand.Execute(null);
+        // bruh
+        // TODO https://www.reactiveui.net/docs/handbook/when-activated
+        var loadBook = ReactiveCommand.CreateFromTask(async _ =>
+        {
+            await _book.Reload();
+            ShowRecipeListCommand.Execute(null);
+        }) as ICommand;
+        loadBook.Execute(null);
     }
 
-    private async Task ShowRecipeBook()
+    private static async Task DoAsync(Func<Task> func)
     {
         try
         {
-            var vm = _replacer.Replace<RecipeBookViewModel>();
-            await vm.Init();
+            await func.Invoke();
         }
         catch (Exception ex)
         {
@@ -41,11 +55,11 @@ public sealed class BarHostViewModel : ActiveWindowViewModelWithMenuBase, IMenuC
         }
     }
 
-    private void ShowMyBar()
+    private static void Do(Action func)
     {
         try
         {
-            _replacer.Replace<MyBarViewModel>();
+            func.Invoke();
         }
         catch (Exception ex)
         {

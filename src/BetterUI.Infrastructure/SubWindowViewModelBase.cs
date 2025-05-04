@@ -8,18 +8,15 @@ namespace BetterUI.Infrastructure;
 /// </summary>
 public class SubWindowViewModelBase : ReactiveObject
 {
-    internal event Action? ReturnBackEvent;
-
-    public ISubMainViewModel Main { get; }
-
-    private readonly SubWindowViewModelBase? _previous;
+    public event Action? ReturnBackEvent;
+    private readonly IReplacerSubMainViewModel _replacer;
+    private SubWindowViewModelBase? _previous;
 
 
-    //public SubWindowViewModelBase(ISubMainViewModel main)
-    //{
-    //    //Main = main;
-    //    //_previous = Main.ActiveWindow;
-    //}
+    public SubWindowViewModelBase()
+    {
+        _replacer = IReplacerSubMainViewModel.GetFromApp();
+    }
 
 
     protected void TurnBack()
@@ -29,9 +26,14 @@ public class SubWindowViewModelBase : ReactiveObject
             // if needs not previous, it may be custom
             ReturnBackEvent.Invoke();
         }
-        else
+        else if (_previous is not null)
         {
-            Main.ActiveWindow = _previous;
+            _replacer.Replace(_previous);
         }
+    }
+
+    public void SetPrevious(SubWindowViewModelBase previous)
+    {
+        _previous = previous;
     }
 }

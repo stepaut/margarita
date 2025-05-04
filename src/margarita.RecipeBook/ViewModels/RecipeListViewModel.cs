@@ -1,4 +1,5 @@
-﻿using DynamicData;
+﻿using BetterUI.Infrastructure;
+using DynamicData;
 using margarita.RecipeBook.Models;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace margarita.RecipeBook.ViewModels;
 
-public class RecipeListViewModel : ReactiveObject
+public class RecipeListViewModel : SubWindowViewModelBase, IMenuCompatible
 {
     [Reactive]
     public Recipe? SelectedRecipe { get; set; }
@@ -26,11 +27,7 @@ public class RecipeListViewModel : ReactiveObject
 
         this.WhenAnyValue(x => x.SelectedRecipeInfo)
             .Subscribe(async recipeInfo => await LoadRecipe(recipeInfo?.Id));
-    }
 
-    public void FillList()
-    {
-        Recipes.Clear();
         Recipes.AddRange(_book.RecipeInfos);
     }
 

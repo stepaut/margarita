@@ -30,7 +30,7 @@ public class RecipeBookModel
         _recipeFamilyService = recipeFamilyService;
     }
 
-    public async Task Load()
+    public async Task Reload()
     {
         _recipeInfos.Clear();
         _recipeInfos.AddRange((await _recipeService.GetRecipeInfos()).Select(x => x.Adapt<RecipeInfo>()));

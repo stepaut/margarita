@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace margarita.RecipeBook.Views;
 
-public partial class RecipeBookView : UserControl
+public partial class IngredientsEditingView : UserControl
 {
-    public RecipeBookView()
+    public IngredientsEditingView()
     {
         InitializeComponent();
     }

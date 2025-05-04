@@ -54,7 +54,7 @@
 
           <Separator />
 
-          <Button Classes="inMenu" Command="{Binding ShowRecipeBookCommand}">
+          <Button Classes="inMenu" Command="{Binding ShowRecipeListCommand}">
             <Grid ColumnDefinitions="40, *">
               <Viewbox
                 Grid.Column="0"
@@ -66,7 +66,41 @@
                 Grid.Column="1"
                 Margin="4,0,0,0"
                 VerticalAlignment="Center"
-                Text="Recipe Book" />
+                Text="Recipe List" />
+            </Grid>
+          </Button>
+
+
+          <Button Classes="inMenu" Command="{Binding ShowIngredientsListCommand}">
+            <Grid ColumnDefinitions="40, *">
+              <Viewbox
+                Grid.Column="0"
+                Width="28"
+                Height="28">
+                <icons:SymbolIcon Symbol="Book" />
+              </Viewbox>
+              <TextBlock
+                Grid.Column="1"
+                Margin="4,0,0,0"
+                VerticalAlignment="Center"
+                Text="Ingredients List" />
+            </Grid>
+          </Button>
+
+
+          <Button Classes="inMenu" Command="{Binding ShowRecipeFamilyListCommand}">
+            <Grid ColumnDefinitions="40, *">
+              <Viewbox
+                Grid.Column="0"
+                Width="28"
+                Height="28">
+                <icons:SymbolIcon Symbol="Book" />
+              </Viewbox>
+              <TextBlock
+                Grid.Column="1"
+                Margin="4,0,0,0"
+                VerticalAlignment="Center"
+                Text="Recipe Families List" />
             </Grid>
           </Button>
 
