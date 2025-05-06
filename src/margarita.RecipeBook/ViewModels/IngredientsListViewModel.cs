@@ -11,7 +11,7 @@ namespace margarita.RecipeBook.ViewModels;
 
 public class IngredientsListViewModel : SubWindowViewModelBase, IMenuCompatible
 {
-    public ICommand CreateIngredientCommand { get; }
+    public ICommand CreateCommand { get; }
 
     [Reactive]
     public Ingredient? SelectedIngredient { get; set; }
@@ -29,10 +29,10 @@ public class IngredientsListViewModel : SubWindowViewModelBase, IMenuCompatible
             .Subscribe();
         Ingredients = collection;
 
-        CreateIngredientCommand = ReactiveCommand.Create(CreateIngredient);
+        CreateCommand = ReactiveCommand.Create(Create);
     }
 
-    private void CreateIngredient()
+    private void Create()
     {
         var editor = _replacer.Replace<IngredientsEditingViewModel>();
         editor.SetPrevious(this);

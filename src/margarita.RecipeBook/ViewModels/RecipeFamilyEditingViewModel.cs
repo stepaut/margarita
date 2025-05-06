@@ -7,37 +7,33 @@ using System.Threading.Tasks;
 
 namespace margarita.RecipeBook.ViewModels;
 
-public class IngredientsEditingViewModel : BookEditingViewModelBase
+public class RecipeFamilyEditingViewModel : BookEditingViewModelBase
 {
     [Reactive]
-    public int Alc { get; set; } = 0;
+    public RecipeFamily? Parent { get; set; }
 
-    [Reactive]
-    public Ingredient? Parent { get; set; }
-
-    private readonly IIngredientService _service;
+    private readonly IRecipeFamilyService _service;
 
 
-    public IngredientsEditingViewModel(IIngredientService service, RecipeBookModel book) : base(book)
+    public RecipeFamilyEditingViewModel(IRecipeFamilyService service, RecipeBookModel book) : base(book)
     {
         _service = service;
     }
 
 
-    public void SetSource(Ingredient source)
+    public void SetSource(RecipeFamily source)
     {
         Id = source.Id;
         Name = source.Name;
         Description = source.Description;
-        Alc = source.Alc;
         Parent = source.Parent;
     }
 
     protected override async Task SaveImpl()
     {
-        var dto = this.Adapt<IngredientDto>();
+        var dto = this.Adapt<RecipeFamilyDto>();
         dto.ParentId = Parent?.Id;
 
-        await _service.CreateOrUpdateIngredient(dto);
+        await _service.CreateRecipeFamily(dto);
     }
 }

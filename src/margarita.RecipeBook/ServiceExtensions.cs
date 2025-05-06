@@ -14,6 +14,7 @@ public static class ServiceExtensions
 
         // editors
         services.AddTransient<IngredientsEditingViewModel>();
+        services.AddTransient<RecipeFamilyEditingViewModel>();
 
         // model
         services.AddSingleton<RecipeBookModel>();

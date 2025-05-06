@@ -30,7 +30,7 @@
       Grid.Column="0"
       HorizontalAlignment="Stretch"
       HorizontalContentAlignment="Center"
-      Command="{Binding CreateIngredientCommand}"
+      Command="{Binding CreateCommand}"
       Content="+" />
 
     <ScrollViewer Grid.RowSpan="2" Grid.Column="1">

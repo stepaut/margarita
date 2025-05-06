@@ -11,9 +11,9 @@
   x:DataType="vm:RecipeFamilyListViewModel"
   mc:Ignorable="d">
 
-  <Grid ColumnDefinitions="*,2*">
+  <Grid ColumnDefinitions="*,2*" RowDefinitions="*, auto">
     <ListBox
-      Grid.Column="0"
+      Grid.Column="0" Grid.Row="0"
       ItemsSource="{Binding RecipeFamilies}"
       SelectedItem="{Binding SelectedRecipeFamily}">
       <ListBox.DataTemplates>
@@ -25,7 +25,15 @@
       </ListBox.DataTemplates>
     </ListBox>
 
-    <ScrollViewer Grid.Column="1">
+    <Button
+     Grid.Row="1"
+     Grid.Column="0"
+     HorizontalAlignment="Stretch"
+     HorizontalContentAlignment="Center"
+     Command="{Binding CreateCommand}"
+     Content="+" />
+
+    <ScrollViewer Grid.RowSpan="2" Grid.Column="1">
       <StackPanel
         DataContext="{Binding SelectedRecipeFamily}"
         Orientation="Vertical"

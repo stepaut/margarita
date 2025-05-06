@@ -3,4 +3,9 @@
     <ProjectReference Include="..\margarita.Controls\margarita.Controls.csproj" />
     <ProjectReference Include="..\margarita.Service\margarita.Service.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\RecipeFamilyEditingView.axaml.cs">
+      <DependentUpon>RecipeFamilyEditingView.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>
