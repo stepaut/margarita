@@ -17,7 +17,7 @@ public class RecipeListViewModel : SubWindowViewModelBase, IMenuCompatible
     [Reactive]
     public RecipeInfo? SelectedRecipeInfo { get; set; }
 
-    public ObservableCollection<RecipeInfo> Recipes { get; } = new();
+    public ReadOnlyObservableCollection<RecipeInfo> Recipes { get; }
 
     private readonly RecipeBookModel _book;
 
@@ -28,7 +28,10 @@ public class RecipeListViewModel : SubWindowViewModelBase, IMenuCompatible
         this.WhenAnyValue(x => x.SelectedRecipeInfo)
             .Subscribe(async recipeInfo => await LoadRecipe(recipeInfo?.Id));
 
-        Recipes.AddRange(_book.RecipeInfos);
+        _book.ConnectToRecipeInfos.Bind(out var collection)
+            .DisposeMany()
+            .Subscribe();
+        Recipes = collection;
     }
 
     private async Task LoadRecipe(Guid? recipeId)

@@ -2,6 +2,7 @@
 using DynamicData;
 using margarita.RecipeBook.Models;
 using ReactiveUI.Fody.Helpers;
+using System;
 using System.Collections.ObjectModel;
 
 namespace margarita.RecipeBook.ViewModels;
@@ -11,14 +12,13 @@ public class RecipeFamilyListViewModel : SubWindowViewModelBase, IMenuCompatible
     [Reactive]
     public RecipeFamily? SelectedRecipeFamily { get; set; }
 
-    public ObservableCollection<RecipeFamily> RecipeFamilies { get; } = new();
-
-    private readonly RecipeBookModel _book;
+    public ReadOnlyObservableCollection<RecipeFamily> RecipeFamilies { get; }
 
     public RecipeFamilyListViewModel(RecipeBookModel book)
     {
-        _book = book;
-
-        RecipeFamilies.AddRange(_book.RecipeFamilies);
+        book.ConnectToRecipeFamilies.Bind(out var recipeFamilies)
+            .DisposeMany()
+            .Subscribe();
+        RecipeFamilies = recipeFamilies;
     }
 }

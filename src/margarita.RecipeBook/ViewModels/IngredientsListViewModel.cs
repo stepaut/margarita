@@ -3,6 +3,7 @@ using DynamicData;
 using margarita.RecipeBook.Models;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -15,19 +16,20 @@ public class IngredientsListViewModel : SubWindowViewModelBase, IMenuCompatible
     [Reactive]
     public Ingredient? SelectedIngredient { get; set; }
 
-    public ObservableCollection<Ingredient> Ingredients { get; } = new();
+    public ReadOnlyObservableCollection<Ingredient> Ingredients { get; }
 
-    private readonly RecipeBookModel _book;
     private readonly IReplacerSubMainViewModel _replacer;
 
     public IngredientsListViewModel(IReplacerSubMainViewModel replacer, RecipeBookModel book)
     {
-        _book = book;
         _replacer = replacer;
 
-        CreateIngredientCommand = ReactiveCommand.Create(CreateIngredient);
+        book.ConnectToIngredients.Bind(out var collection)
+            .DisposeMany()
+            .Subscribe();
+        Ingredients = collection;
 
-        Ingredients.AddRange(_book.Ingredients);
+        CreateIngredientCommand = ReactiveCommand.Create(CreateIngredient);
     }
 
     private void CreateIngredient()
