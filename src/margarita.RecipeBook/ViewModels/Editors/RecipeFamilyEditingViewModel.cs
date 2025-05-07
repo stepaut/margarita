@@ -1,16 +1,21 @@
-﻿using Mapster;
+﻿using DynamicData;
+using Mapster;
 using margarita.Data.Dto.RecipeBook;
 using margarita.RecipeBook.Models;
 using margarita.Service.RecipeBook;
 using ReactiveUI.Fody.Helpers;
+using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
-namespace margarita.RecipeBook.ViewModels;
+namespace margarita.RecipeBook.ViewModels.Editors;
 
 public class RecipeFamilyEditingViewModel : BookEditingViewModelBase
 {
     [Reactive]
     public RecipeFamily? Parent { get; set; }
+    public ObservableCollection<RecipeFamily?> RecipeFamilies { get; }
+
 
     private readonly IRecipeFamilyService _service;
 
@@ -18,6 +23,11 @@ public class RecipeFamilyEditingViewModel : BookEditingViewModelBase
     public RecipeFamilyEditingViewModel(IRecipeFamilyService service, RecipeBookModel book) : base(book)
     {
         _service = service;
+
+        book.ConnectToRecipeFamilies.Bind(out var recipeFamilies)
+            .DisposeMany()
+            .Subscribe();
+        RecipeFamilies = [null, .. recipeFamilies];
     }
 
 

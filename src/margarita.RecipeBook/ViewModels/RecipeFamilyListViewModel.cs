@@ -1,6 +1,7 @@
 ﻿using BetterUI.Infrastructure;
 using DynamicData;
 using margarita.RecipeBook.Models;
+using margarita.RecipeBook.ViewModels.Editors;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using System;

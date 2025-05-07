@@ -1,11 +1,14 @@
-﻿using Mapster;
+﻿using DynamicData;
+using Mapster;
 using margarita.Data.Dto.RecipeBook;
 using margarita.RecipeBook.Models;
 using margarita.Service.RecipeBook;
 using ReactiveUI.Fody.Helpers;
+using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
-namespace margarita.RecipeBook.ViewModels;
+namespace margarita.RecipeBook.ViewModels.Editors;
 
 public class IngredientsEditingViewModel : BookEditingViewModelBase
 {
@@ -14,6 +17,8 @@ public class IngredientsEditingViewModel : BookEditingViewModelBase
 
     [Reactive]
     public Ingredient? Parent { get; set; }
+    public ObservableCollection<Ingredient?> Ingredients { get; }
+
 
     private readonly IIngredientService _service;
 
@@ -21,6 +26,11 @@ public class IngredientsEditingViewModel : BookEditingViewModelBase
     public IngredientsEditingViewModel(IIngredientService service, RecipeBookModel book) : base(book)
     {
         _service = service;
+
+        book.ConnectToIngredients.Bind(out var ingredients)
+            .DisposeMany()
+            .Subscribe();
+        Ingredients = [null, .. ingredients];
     }
 
 

@@ -1,6 +1,7 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-  <StyleInclude Source="/Converters/Converters.axaml"/>
-  <StyleInclude Source="/Resources/TextBlockStyles.axaml"/>
+  <StyleInclude Source="/Converters/Converters.axaml" />
+  <StyleInclude Source="/Resources/TextBlockStyles.axaml" />
+  <StyleInclude Source="/Resources/ComboBocStyles.axaml" />
+  <StyleInclude Source="/Resources/ButtonStyles.axaml" />
 </Styles>

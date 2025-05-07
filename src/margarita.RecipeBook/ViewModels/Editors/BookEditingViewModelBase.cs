@@ -4,7 +4,7 @@ using ReactiveUI.Fody.Helpers;
 using System;
 using System.Threading.Tasks;
 
-namespace margarita.RecipeBook.ViewModels;
+namespace margarita.RecipeBook.ViewModels.Editors;
 
 public abstract class BookEditingViewModelBase : EditingViewModelBase
 {

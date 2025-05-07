@@ -1,13 +1,14 @@
 <UserControl
-  x:Class="margarita.RecipeBook.Views.RecipeFamilyEditingView"
+  x:Class="margarita.RecipeBook.Views.Editors.RecipeEditingView"
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:m="clr-namespace:margarita.RecipeBook.Models"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:vm="clr-namespace:margarita.RecipeBook.ViewModels"
+  xmlns:vm="clr-namespace:margarita.RecipeBook.ViewModels.Editors"
   d:DesignHeight="450"
   d:DesignWidth="800"
-  x:DataType="vm:RecipeFamilyEditingViewModel"
+  x:DataType="vm:RecipeEditingViewModel"
   mc:Ignorable="d">
 
   <Grid
@@ -27,23 +28,33 @@
       <TextBlock Classes="h4" Text="Name" />
       <TextBox Text="{Binding Name}" />
 
+      <TextBlock Classes="h4" Text="OriginalName" />
+      <TextBox Text="{Binding OriginalName}" />
+
       <TextBlock Classes="h4" Text="Description" />
       <TextBox Text="{Binding Description}" />
+
+      <TextBlock Classes="h4" Text="Family" />
+      <ComboBox ItemsSource="{Binding RecipeFamilies}" SelectedItem="{Binding Family}">
+        <ComboBox.DataTemplates>
+          <DataTemplate DataType="m:RecipeFamily">
+            <StackPanel Orientation="Vertical">
+              <TextBlock Classes="h2" Text="{Binding Name}" />
+            </StackPanel>
+          </DataTemplate>
+        </ComboBox.DataTemplates>
+      </ComboBox>
 
     </StackPanel>
 
     <Button
       Grid.Row="1"
       Grid.Column="0"
-      HorizontalAlignment="Stretch"
-      HorizontalContentAlignment="Center"
       Command="{Binding SaveCommand}"
       Content="Save" />
     <Button
       Grid.Row="1"
       Grid.Column="1"
-      HorizontalAlignment="Stretch"
-      HorizontalContentAlignment="Center"
       Command="{Binding CancelCommand}"
       Content="Cancel" />
   </Grid>

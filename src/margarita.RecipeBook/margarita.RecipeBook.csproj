@@ -4,7 +4,10 @@
     <ProjectReference Include="..\margarita.Service\margarita.Service.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Views\RecipeFamilyEditingView.axaml.cs">
+    <Compile Update="Views\Editors\RecipeEditingView.axaml.cs">
+      <DependentUpon>RecipeEditingView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Editors\RecipeFamilyEditingView.axaml.cs">
       <DependentUpon>RecipeFamilyEditingView.axaml</DependentUpon>
     </Compile>
   </ItemGroup>

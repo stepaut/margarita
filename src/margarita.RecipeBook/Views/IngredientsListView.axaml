@@ -13,7 +13,8 @@
 
   <Grid ColumnDefinitions="*,2*" RowDefinitions="*, auto">
     <ListBox
-      Grid.Column="0" Grid.Row="0"
+      Grid.Row="0"
+      Grid.Column="0"
       ItemsSource="{Binding Ingredients}"
       SelectedItem="{Binding SelectedIngredient}">
       <ListBox.DataTemplates>
@@ -28,8 +29,6 @@
     <Button
       Grid.Row="1"
       Grid.Column="0"
-      HorizontalAlignment="Stretch"
-      HorizontalContentAlignment="Center"
       Command="{Binding CreateCommand}"
       Content="+" />
 
