@@ -2,12 +2,12 @@
 using Mapster;
 using margarita.Data.Dto.RecipeBook;
 using margarita.RecipeBook.Models;
+using margarita.RecipeBook.ViewModels.Items;
 using margarita.Service.RecipeBook;
+using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -24,7 +24,7 @@ public class RecipeEditingViewModel : BookEditingViewModelBase
 
     public ObservableCollection<RecipeComponent> Components { get; } = new();
 
-    public ObservableCollection<RecipeStep> Steps { get; } = new();
+    public ObservableCollection<RecipeStepViewModel> Steps { get; } = new();
 
     [Reactive]
     public RecipeFamily? Family { get; set; }
@@ -41,6 +41,8 @@ public class RecipeEditingViewModel : BookEditingViewModelBase
             .DisposeMany()
             .Subscribe();
         RecipeFamilies = [null, .. recipeFamilies];
+
+        CreateStepCommand = ReactiveCommand.Create(() => Steps.Add(new RecipeStepViewModel()));
     }
 
 

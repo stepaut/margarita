@@ -5,10 +5,11 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:m="clr-namespace:margarita.RecipeBook.Models"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:vm="clr-namespace:margarita.RecipeBook.ViewModels.Editors"
+  xmlns:vme="clr-namespace:margarita.RecipeBook.ViewModels.Editors"
+  xmlns:vmi="clr-namespace:margarita.RecipeBook.ViewModels.Items"
   d:DesignHeight="450"
   d:DesignWidth="800"
-  x:DataType="vm:RecipeEditingViewModel"
+  x:DataType="vme:RecipeEditingViewModel"
   mc:Ignorable="d">
 
   <Grid
@@ -16,36 +17,52 @@
     ColumnDefinitions="*,*"
     RowDefinitions="*, auto">
 
-    <StackPanel
-      Grid.Row="0"
-      Grid.ColumnSpan="2"
-      Orientation="Vertical"
-      Spacing="10">
+    <ScrollViewer Grid.Row="0" Grid.ColumnSpan="2">
+      <StackPanel Orientation="Vertical" Spacing="10" Margin="0,0,0,20">
 
-      <TextBlock Classes="h4" Text="Id" />
-      <TextBox IsEnabled="False" Text="{Binding Id}" />
+        <TextBlock Classes="h4" Text="Id" />
+        <TextBox IsEnabled="False" Text="{Binding Id}" />
 
-      <TextBlock Classes="h4" Text="Name" />
-      <TextBox Text="{Binding Name}" />
+        <TextBlock Classes="h4" Text="Name" />
+        <TextBox Text="{Binding Name}" />
 
-      <TextBlock Classes="h4" Text="OriginalName" />
-      <TextBox Text="{Binding OriginalName}" />
+        <TextBlock Classes="h4" Text="OriginalName" />
+        <TextBox Text="{Binding OriginalName}" />
 
-      <TextBlock Classes="h4" Text="Description" />
-      <TextBox Text="{Binding Description}" />
+        <TextBlock Classes="h4" Text="Description" />
+        <TextBox Text="{Binding Description}" />
 
-      <TextBlock Classes="h4" Text="Family" />
-      <ComboBox ItemsSource="{Binding RecipeFamilies}" SelectedItem="{Binding Family}">
-        <ComboBox.DataTemplates>
-          <DataTemplate DataType="m:RecipeFamily">
-            <StackPanel Orientation="Vertical">
-              <TextBlock Classes="h2" Text="{Binding Name}" />
-            </StackPanel>
-          </DataTemplate>
-        </ComboBox.DataTemplates>
-      </ComboBox>
+        <TextBlock Classes="h4" Text="Family" />
+        <ComboBox ItemsSource="{Binding RecipeFamilies}" SelectedItem="{Binding Family}">
+          <ComboBox.DataTemplates>
+            <DataTemplate DataType="m:RecipeFamily">
+              <StackPanel Orientation="Vertical">
+                <TextBlock Classes="h2" Text="{Binding Name}" />
+              </StackPanel>
+            </DataTemplate>
+          </ComboBox.DataTemplates>
+        </ComboBox>
 
-    </StackPanel>
+        <TextBlock Classes="h4" Text="Steps" />
+        <!--  steps  -->
+        <ItemsRepeater ItemsSource="{Binding Steps}" HorizontalAlignment="Stretch">
+          <ItemsRepeater.ItemTemplate>
+            <DataTemplate DataType="vmi:RecipeStepViewModel">
+              <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,5,0,0" HorizontalAlignment="Stretch">
+                <NumericUpDown FormatString="0" Minimum="0"
+                  VerticalAlignment="Center"
+                  Classes="h5"
+                  Value="{Binding Order}" />
+                <TextBox Classes="h3" Text="{Binding Description}" HorizontalAlignment="Stretch"/>
+              </StackPanel>
+            </DataTemplate>
+          </ItemsRepeater.ItemTemplate>
+        </ItemsRepeater>
+
+        <Button Command="{Binding CreateStepCommand}" Content="+" />
+
+      </StackPanel>
+    </ScrollViewer>
 
     <Button
       Grid.Row="1"
